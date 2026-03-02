@@ -124,19 +124,20 @@ able to easily change the network settings.
 
 ### Installing and updating
 
-There is a Python [wheel package](https://packaging.python.org/en/latest/glossary/#term-Wheel) with
-`.whl` extension available in your [personal download folder](#downloads). The package is just a
-few kilobytes big, contains pure Python, and includes all the API required to interface with a
-Metronomo unit.
+The Python API to control your Metronomo unit is available on
+[PyPI](https://pypi.org/project/intermod-metronomo/) and is easily installed using `pip`:
 
-You can easily install it using `pip`, e.g.:
 ```console
-python -m pip install intermod_metronomo-1.1.0-py3-none-any.whl
+python -m pip install intermod-metronomo
 ```
 
-For updating a previous installation, just add the `--upgrade` flag, e.g.:
+If you need to install the API on an air-gapped environment not connected to the internet, you can
+download a Python [wheel package](https://packaging.python.org/en/latest/glossary/#term-Wheel) with
+`.whl` extension from your [personal download folder](#downloads). The package is just a few
+kilobytes big, contains pure Python, and can be installed by `pip`:
+
 ```console
-python -m pip install --upgrade intermod_metronomo-1.1.0-py3-none-any.whl
+python -m pip install intermod_metronomo-1.1.0-py3-none-any.whl
 ```
 
 :::{tip}
