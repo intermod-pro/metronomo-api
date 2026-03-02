@@ -1,0 +1,71 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "intermod-metronomo"
+authors = [
+    {name = "Intermodulation Products AB", email = "support@intermod.pro"},
+]
+dynamic = ["version"]
+description = "Python API for the Metronomo hardware"
+readme = "README.md"
+license = "MIT"
+classifiers = [
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Instrument Drivers",
+]
+
+requires-python = ">=3.10"
+dependencies = [
+    "cryptography >= 43.0.0",
+    "grpcio >= 1.66.0",
+    "paramiko >= 3.5.1",
+    "protobuf >= 5.27.2",
+]
+
+[dependency-groups]
+dev = [
+    "grpcio-tools >= 1.66.0",
+]
+
+[project.urls]
+Homepage = "https://intermod.pro/products/metronomo"
+Documentation = "https://intermod.pro/manuals/metronomo/"
+Repository = "https://github.com/intermod-pro/metronomo-api"
+Changelog = "https://intermod.pro/manuals/metronomo/CHANGELOG.html"
+
+[tool.hatch.version]
+path = "metronomo/__init__.py"
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "metronomo/",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["metronomo"]
+
+[tool.pyright]
+exclude = [
+    "metronomo/_rpc/",
+]
+include = [
+    "metronomo/",
+]
+
+typeCheckingMode = "standard"
+
+deprecateTypingAliases = true
+reportDeprecated = "warning"
+
+[tool.ruff]
+line-length = 100
+exclude = [
+    "metronomo/_rpc/",
+]
+include = [
+    "metronomo/",
+]
