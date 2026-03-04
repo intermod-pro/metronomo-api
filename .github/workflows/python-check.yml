@@ -1,0 +1,71 @@
+name: Python application
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+permissions:
+  contents: read
+
+jobs:
+  ruff-format:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v6
+
+    - name: Setup project
+      uses: ./.github/actions/setup-project
+
+    - name: Ruff format
+      run: uv run ruff format --diff
+
+  ruff-check:
+    strategy:
+      max-parallel: 1
+      matrix:
+        ver:
+          - py-ver: "3.10"
+            dep-res: lowest-direct
+          - py-ver: "3.x"
+            dep-res: highest
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v6
+
+    - name: Setup project
+      uses: ./.github/actions/setup-project
+      with:
+        py-ver: ${{ matrix.ver.py-ver }}
+        dep-res: ${{ matrix.ver.dep-res }}
+
+    - name: Ruff check
+      run: uv run --resolution ${{ matrix.ver.dep-res }} ruff check --output-format=github
+
+  basedpyright:
+    strategy:
+      max-parallel: 1
+      matrix:
+        ver:
+          - py-ver: "3.10"
+            dep-res: lowest-direct
+          - py-ver: "3.x"
+            dep-res: highest
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v6
+
+    - name: Setup project
+      uses: ./.github/actions/setup-project
+      with:
+        py-ver: ${{ matrix.ver.py-ver }}
+        dep-res: ${{ matrix.ver.dep-res }}
+
+    - name: Basedpyright
+      run: uv run --resolution ${{ matrix.ver.dep-res }} basedpyright
