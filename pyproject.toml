@@ -28,7 +28,9 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "basedpyright>=1.38.2",
     "grpcio-tools >= 1.66.0",
+    "ruff>=0.15.4",
 ]
 
 [project.urls]
@@ -65,7 +67,4 @@ reportDeprecated = "warning"
 line-length = 100
 exclude = [
     "metronomo/_rpc/",
-]
-include = [
-    "metronomo/",
 ]

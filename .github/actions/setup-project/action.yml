@@ -1,0 +1,22 @@
+name: 'Setup project'
+
+inputs:
+  py-ver:
+    default: "3.x"
+  dep-res:
+    default: "highest"
+
+runs:
+  using: "composite"
+
+  steps:
+    - uses: actions/setup-python@v6
+      with:
+        python-version: ${{ inputs.py-ver }}
+
+    - uses: astral-sh/setup-uv@v7
+      with:
+        version: "0.10.8"
+
+    - run: uv sync --resolution ${{ inputs.dep-res }}
+      shell: bash
