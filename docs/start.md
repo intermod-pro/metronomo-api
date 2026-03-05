@@ -9,6 +9,52 @@ with the Metronomo unit. If not, or if you can't find it anymore, contact
 
 
 
+## Python API
+
+### Installing and updating
+
+The Python API to control your Metronomo unit is available on
+[PyPI](https://pypi.org/project/intermod-metronomo/) and is easily installed using `pip`:
+
+```console
+python -m pip install intermod-metronomo
+```
+
+If you need to install the API on an air-gapped environment not connected to the internet, you can
+download a Python [wheel package](https://packaging.python.org/en/latest/glossary/#term-Wheel) with
+`.whl` extension from your [personal download folder](#downloads). The package is just a few
+kilobytes big, contains pure Python, and can be installed by `pip`:
+
+```console
+python -m pip install intermod_metronomo-1.1.0-py3-none-any.whl
+```
+
+:::{tip}
+If you get a _permission denied_ error while installing, you might try adding the `--user` flag to
+the command to install the package in your user directory rather than the system directory.
+:::
+
+:::{important}
+When installing/updating the package, make sure to use the same `python` executable and virtual
+environment that you would using when running your experiments. If unsure, you can find out what
+executable you are using in a Python shell by running the commands:
+```python
+import sys
+print(sys.executable)
+```
+:::
+
+
+### Getting help
+
+The Python package `metronomo` is the entry point for controlling a Metronomo unit.
+Refer to the [API Reference Guide](api/top) for the full documentation of the `metronomo` package.
+
+If you get stuck, you're always welcome to [reach out](mailto:support@intermod.pro) and we'll
+gladly help you get going with your experiments.
+
+
+
 ## Setup
 
 ### Grounding
@@ -43,7 +89,7 @@ their shields connected to each ground:
   - *SYNC IN*: input sync pulse / sysref (SMA)
 
 For ESD protection and fault safety, each of `SIGNAL GND`, `CLK_IN GND` and `SYNC_IN GND` are
-connected individually to `POWER GND` via a parallel of a 10-Ω resistor and a 45-V TVS diode.
+connected individually to `POWER GND` via a parallel of a 10-MΩ resistor and a 45-V TVS diode.
 
 
 
@@ -108,8 +154,8 @@ operating system if you find trouble.
 #### Changing Metronomo's network settings
 
 Metronomo can be configured to use a static IP address, or to request a configuration from a DHCP
-server. From factory, Metronomo units are configured to use DHCP. To change the network
-configuration, use the `change_network` program available in your
+server.
+To change the network configuration, use the `change_network` program available in your
 [personal download folder](#downloads).
 
 `change_network` can connect to Metronomo in two ways. One way is through a network connection,
@@ -117,50 +163,3 @@ which requires you to known the current IP address / hostname and to be able to 
 other way is through the USB serial port on the back panel, use the provided USB A-to-B cable, or
 equivalent. Whichever connection method you use, follow the on-screen instructions and you should be
 able to easily change the network settings.
-
-
-
-## Python API
-
-### Installing and updating
-
-The Python API to control your Metronomo unit is available on
-[PyPI](https://pypi.org/project/intermod-metronomo/) and is easily installed using `pip`:
-
-```console
-python -m pip install intermod-metronomo
-```
-
-If you need to install the API on an air-gapped environment not connected to the internet, you can
-download a Python [wheel package](https://packaging.python.org/en/latest/glossary/#term-Wheel) with
-`.whl` extension from your [personal download folder](#downloads). The package is just a few
-kilobytes big, contains pure Python, and can be installed by `pip`:
-
-```console
-python -m pip install intermod_metronomo-1.1.0-py3-none-any.whl
-```
-
-:::{tip}
-If you get a _permission denied_ error while installing, you might try adding the `--user` flag to
-the command to install the package in your user directory rather than the system directory.
-:::
-
-:::{important}
-When installing/updating the package, make sure to use the same `python` executable and virtual
-environment that you would using when running your experiments. If unsure, you can find out what
-executable you are using in a Python shell by running the commands:
-```python
-import sys
-print(sys.executable)
-```
-:::
-
-
-### Getting help
-
-The Python package `metronomo` is the entry point for controlling a Metronomo unit.
-Refer to the [API Reference Guide](api/top) for the full documentation of the `metronomo` package.
-
-If you get stuck, you're always welcome to [reach out](mailto:support@intermod.pro) and we'll
-gladly help you get going with your experiments.
-
