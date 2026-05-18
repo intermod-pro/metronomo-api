@@ -214,7 +214,7 @@ class Metronomo:
     def _set_sysref_pulser(self):
         self._set_sysref_mode(mty.SYSREF_MODE_PULSER)
 
-    def set_out_clk_freq(self, out_freq: float):
+    def set_out_clk_freq(self, out_freq: float) -> float:
         """Set frequency of all output clocks.
 
         Args:
