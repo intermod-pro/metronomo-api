@@ -3,6 +3,7 @@
 """Entry point for controlling the Metronomo hardware."""
 
 import socket
+import sys
 
 import grpc
 from grpc._channel import _InactiveRpcError
